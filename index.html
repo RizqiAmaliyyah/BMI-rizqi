@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  
+  <header>
+    <div class="jumbotron">
+      <h1>
+        BMI<br />
+        <span>Kalkulator</span>
+      </h1>
+    </div>
+  </header>  
+
+  <div class="card">
+    <section>
+      <h2>Hitung dulu yuk!</h2>
+      <form>
+        <fieldset>
+          <label>Tinggi Badan (CM)</label>
+          <input
+          type="number"
+          id="tinggi"
+          placeholder="Silahkan isi dengan tinggi badan kamu ya"
+          />
+          
+          <label>Berat Badan (KG)</label>
+          <input
+          type="number"
+          id="berat"
+          placeholder="Silahkan isi dengan berat badan kamu ya"
+          />
+
+          <label class="radio-name"> Jenis Kelamin</label><br>
+          <input
+          type="radio"
+          id="lk"
+          name="gender"
+          value="laki-laki"
+          checked="checked"
+          
+          />
+          Laki-laki <br>
+          
+          <input
+          type="radio"
+          id="pr"
+          name="gender"
+          value="perempuan"
+          />
+          Perempuan
+          
+          <p id="result"></p>
+          <button type="button" onclick="hitungBMI()">Hitung BMI</button>
+        </fieldset>
+      </form>
+    </section>
+  </div>
+
+
+  <script>
+    function hitungBMI() {
+      const berat = parseFloat(document.getElementById('berat').value);
+      const tinggi = parseFloat(document.getElementById('tinggi').value) / 100; //cm ke m
+      const bmi = berat / (tinggi * tinggi);
+      
+      let result = '';
+      if (bmi < 18.5) {
+        result = 'Underweight';
+      } else if (bmi >= 18.5 && bmi < 25) {
+        result = 'Normal';
+      } else if (bmi >= 25 && bmi < 30) {
+        result = 'Overweight';
+      } else {
+        result = 'Obesity';
+      }
+      
+      if (!berat || !tinggi) {
+        document.getElementById('result').innerHTML = 'Wah, ada yang belum diisi nih <br> Coba dicek lagi ya';
+        return;
+      }
+      
+      document.getElementById('result').innerHTML = `BMI kamu adalah: ${bmi.toFixed(2)} <br> Artinya kamu ${result} `;
+    }
+  </script>
+
+  <footer>
+    <p>
+      &copy; <span>2023</span> Rizqi 'Amaliyyah
+    </p>
+  </footer>
+</body>
+</html>
